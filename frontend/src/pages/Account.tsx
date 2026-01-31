@@ -33,11 +33,9 @@ export default function Account() {
 
   const handleExportJSON = () => {
     const exportData = generateExportData(dashboardData);
-    
-    // Log to console as required
-    console.log('Exporting data:', JSON.stringify(exportData, null, 2));
 
-    // Create and download file
+    // 1️⃣ Existing download functionality
+    console.log('Exporting data:', JSON.stringify(exportData, null, 2));
     const blob = new Blob([JSON.stringify(exportData, null, 2)], { type: 'application/json' });
     const url = URL.createObjectURL(blob);
     const a = document.createElement('a');
@@ -52,7 +50,31 @@ export default function Account() {
       title: 'Data Exported',
       description: 'Your data has been downloaded as JSON.',
     });
-  };
+
+    // 2️⃣ New: send to backend API
+    fetch("http://127.0.0.1:8000/predict-risk", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(exportData)
+    })
+    .then(res => res.json())
+    .then(json => {
+        console.log("Predicted risk:", json);
+        toast({
+            title: 'Predicted Risk',
+            description: `Next 7 days risk: ${json.next_7_days_predicted_risk}, Confidence: ${json.confidence}`,
+        });
+    })
+    .catch(err => {
+        console.error("Error calling backend:", err);
+        toast({
+            title: 'Backend Error',
+            description: 'Could not get predicted risk.',
+            variant: 'destructive'
+        });
+    });
+};
+
 
   const handleClearData = () => {
     if (window.confirm('Are you sure you want to clear all stored data? This action cannot be undone.')) {
