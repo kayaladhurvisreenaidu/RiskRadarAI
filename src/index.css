@@ -1,0 +1,198 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* RiskRadar AI Design System - All colors in HSL */
+
+@layer base {
+  :root {
+    /* Core Colors */
+    --background: 270 50% 98%;
+    --foreground: 270 60% 10%;
+
+    /* Lilac Gradient Background */
+    --gradient-start: 270 40% 97%;
+    --gradient-end: 270 30% 88%;
+
+    /* Primary - Midnight Purple */
+    --primary: 280 58% 23%;
+    --primary-foreground: 0 0% 98%;
+
+    /* Secondary - Soft Cream */
+    --secondary: 45 30% 94%;
+    --secondary-foreground: 280 58% 23%;
+
+    /* Muted - Pastel Lavender */
+    --muted: 270 25% 92%;
+    --muted-foreground: 270 20% 45%;
+
+    /* Accent - Sand tones */
+    --accent: 35 35% 90%;
+    --accent-foreground: 280 58% 23%;
+
+    /* Card - Glassmorphism */
+    --card: 0 0% 100%;
+    --card-foreground: 270 60% 10%;
+
+    /* Popover */
+    --popover: 0 0% 100%;
+    --popover-foreground: 270 60% 10%;
+
+    /* Destructive - Ruby */
+    --destructive: 0 72% 51%;
+    --destructive-foreground: 0 0% 98%;
+
+    /* Success - Emerald */
+    --success: 145 63% 42%;
+    --success-foreground: 0 0% 98%;
+
+    /* Warning - Amber */
+    --warning: 45 93% 47%;
+    --warning-foreground: 280 58% 23%;
+
+    /* Border & Input */
+    --border: 270 20% 88%;
+    --input: 270 20% 88%;
+    --ring: 280 58% 23%;
+
+    --radius: 1rem;
+
+    /* Sidebar - Using primary colors */
+    --sidebar-background: 280 58% 23%;
+    --sidebar-foreground: 45 30% 94%;
+    --sidebar-primary: 45 30% 94%;
+    --sidebar-primary-foreground: 280 58% 23%;
+    --sidebar-accent: 280 50% 30%;
+    --sidebar-accent-foreground: 45 30% 94%;
+    --sidebar-border: 280 50% 30%;
+    --sidebar-ring: 45 30% 94%;
+
+    /* Terminal/Dark mode colors for Live Sensor */
+    --terminal-bg: 0 0% 8%;
+    --terminal-text: 120 100% 50%;
+    --terminal-danger: 0 100% 50%;
+  }
+
+  .dark {
+    --background: 270 30% 8%;
+    --foreground: 270 10% 95%;
+
+    --gradient-start: 270 30% 10%;
+    --gradient-end: 270 40% 15%;
+
+    --primary: 270 40% 70%;
+    --primary-foreground: 280 58% 15%;
+
+    --secondary: 270 20% 20%;
+    --secondary-foreground: 270 10% 90%;
+
+    --muted: 270 20% 18%;
+    --muted-foreground: 270 15% 60%;
+
+    --accent: 35 20% 20%;
+    --accent-foreground: 270 10% 90%;
+
+    --card: 270 25% 12%;
+    --card-foreground: 270 10% 95%;
+
+    --popover: 270 25% 12%;
+    --popover-foreground: 270 10% 95%;
+
+    --destructive: 0 62% 45%;
+    --destructive-foreground: 0 0% 98%;
+
+    --success: 145 50% 35%;
+    --success-foreground: 0 0% 98%;
+
+    --border: 270 20% 22%;
+    --input: 270 20% 22%;
+    --ring: 270 40% 70%;
+
+    --sidebar-background: 270 30% 10%;
+    --sidebar-foreground: 270 10% 90%;
+    --sidebar-primary: 270 40% 70%;
+    --sidebar-primary-foreground: 270 30% 10%;
+    --sidebar-accent: 270 25% 18%;
+    --sidebar-accent-foreground: 270 10% 90%;
+    --sidebar-border: 270 20% 22%;
+    --sidebar-ring: 270 40% 70%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+    font-family: 'Inter', system-ui, sans-serif;
+  }
+}
+
+@layer utilities {
+  /* Lilac gradient background */
+  .bg-lilac-gradient {
+    background: linear-gradient(
+      135deg,
+      hsl(var(--gradient-start)) 0%,
+      hsl(var(--gradient-end)) 100%
+    );
+  }
+
+  /* Glassmorphism card */
+  .glass-card {
+    @apply bg-white/70 backdrop-blur-xl border border-white/50 shadow-lg;
+    border-radius: 1rem;
+  }
+
+  /* Premium glass card with more blur */
+  .glass-card-premium {
+    @apply bg-white/60 backdrop-blur-2xl border border-white/40;
+    border-radius: 1.125rem;
+    box-shadow: 
+      0 4px 24px -4px rgba(43, 18, 76, 0.08),
+      0 8px 48px -8px rgba(43, 18, 76, 0.05),
+      inset 0 1px 1px rgba(255, 255, 255, 0.8);
+  }
+
+  /* Hover glow effect */
+  .hover-glow {
+    transition: all 0.3s ease;
+  }
+  .hover-glow:hover {
+    box-shadow: 0 0 20px rgba(43, 18, 76, 0.15);
+  }
+
+  /* Pulse animation for danger state */
+  .pulse-danger {
+    animation: pulse-danger 1.5s ease-in-out infinite;
+  }
+
+  @keyframes pulse-danger {
+    0%, 100% {
+      box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.4);
+    }
+    50% {
+      box-shadow: 0 0 0 15px rgba(239, 68, 68, 0);
+    }
+  }
+
+  /* Terminal text glow */
+  .terminal-glow {
+    text-shadow: 0 0 10px hsl(var(--terminal-text) / 0.5);
+  }
+
+  /* Validation shake */
+  .shake {
+    animation: shake 0.4s ease-in-out;
+  }
+
+  @keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-5px); }
+    75% { transform: translateX(5px); }
+  }
+}
