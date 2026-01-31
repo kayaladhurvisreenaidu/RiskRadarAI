@@ -27,7 +27,7 @@ app.add_middleware(
 # Resolve history path safely
 # -------------------------------------------------
 BASE_DIR = Path(__file__).resolve().parent.parent
-HISTORY_PATH = BASE_DIR / "data" / "raw"/ athlete_history.csv"
+HISTORY_PATH = BASE_DIR / "data" / "raw"/ "athlete_history.csv"
 
 
 # -------------------------------------------------
