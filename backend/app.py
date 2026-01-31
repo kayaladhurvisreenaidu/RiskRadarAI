@@ -4,8 +4,9 @@ from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 from pathlib import Path
 
-from services.feature_builder import build_features
-from services.predictor import predict
+from backend.services.feature_builder import build_features
+from backend.services.predictor import predict
+
 
 
 app = FastAPI(
