@@ -12,13 +12,22 @@ app = FastAPI(
     version="1.0"
 )
 
-
+# --------------------------
+# Add CORS middleware here
+# --------------------------
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],  # for demo allow all origins; later use your frontend URL
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 # -------------------------------------------------
 # Resolve history path safely
 # -------------------------------------------------
 BASE_DIR = Path(__file__).resolve().parent.parent
-HISTORY_PATH = BASE_DIR / "data" / "athlete_history.csv"
+HISTORY_PATH = BASE_DIR / "data" / "raw"/ athlete_history.csv"
 
 
 # -------------------------------------------------
